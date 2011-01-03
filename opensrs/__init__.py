@@ -219,7 +219,6 @@ class OpenSRS(object):
         signature = md5.new("%s%s" % (md5.new("%s%s" % (data, self.private_key)).hexdigest(), self.private_key)).hexdigest()
 
         # send our post
-        httplib2.debuglevel = 1
         resp, content = self.H.request(self.server, "POST", 
                 body=data,
                 headers={
