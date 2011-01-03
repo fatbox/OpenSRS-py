@@ -11,6 +11,8 @@ Example Usage
 
 Here is what a post call looks like:
 
+    from opensrs import OpenSRS
+    opensrs = OpenSRS("myusername", "privatekey", test=True)
     opensrs.post("sw_register", "domain",
         attrs={
             "domain": "example.com",
