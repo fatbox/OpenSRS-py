@@ -266,4 +266,4 @@ class OpenSRS(object):
         """
         Shortcut to get the balance.
         """
-        return resp = self.post("get_balance", "balance", {})
+        return self.post("get_balance", "balance", {})
