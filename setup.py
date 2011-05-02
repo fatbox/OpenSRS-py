@@ -3,6 +3,6 @@
 from distutils.core import setup
 
 setup(name="OpenSRS",
-      packages=['opensrs', ]
-      requires=['xml.etree.ElementTree', 'httplib2']
+      packages=['opensrs', ],
+      requires=['xml.etree.ElementTree', 'httplib2'],
      )
