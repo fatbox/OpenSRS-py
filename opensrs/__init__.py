@@ -261,3 +261,9 @@ class OpenSRS(object):
             "max_wait_time": 3,
             "tlds": tlds,
             })
+
+    def balance(self):
+        """
+        Shortcut to get the balance.
+        """
+        return resp = self.post("get_balance", "balance", {})
