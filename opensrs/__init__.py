@@ -267,3 +267,17 @@ class OpenSRS(object):
         Shortcut to get the balance.
         """
         return self.post("get_balance", "balance", {})
+
+    def get_domain_price(self, domain_name, period=1, renewal=False):
+        """
+        Determine the current price for a particular domain.
+
+        domain_name: Must be a full domain name, e.g. 'example.com'
+        period: How many years
+        renewal: Is this a renewal?
+        """
+        return self.post("get_price", "domain", {
+            "domain": domain_name,
+            "period": period,
+            "reg_type": "new" if not renewal else "renewal",
+            })
