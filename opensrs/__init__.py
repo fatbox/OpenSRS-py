@@ -28,7 +28,7 @@ from xml.etree.ElementTree import fromstring, tostring, SubElement, Element
 from urllib import quote, urlencode
 
 import httplib2
-import md5
+import hashlib
 
 OPENSRS_SERVERS = {
         'production': 'https://rr-n1-tor.opensrs.net:55443',
@@ -216,7 +216,7 @@ class OpenSRS(object):
 
         # create our signature:
         # MD5(MD5(data + private_key)+private_key)
-        signature = md5.new("%s%s" % (md5.new("%s%s" % (data, self.private_key)).hexdigest(), self.private_key)).hexdigest()
+        signature = hashlib.md5("%s%s" % (hashlib.md5("%s%s" % (data, self.private_key)).hexdigest(), self.private_key)).hexdigest()
 
         # send our post
         resp, content = self.H.request(self.server, "POST", 
