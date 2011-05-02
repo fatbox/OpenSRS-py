@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name="OpenSRS",
       packages=['opensrs', ],
-      requires=['xml.etree.ElementTree', 'httplib2'],
+      install_requires=['httplib2', ],
      )
