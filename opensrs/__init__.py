@@ -230,6 +230,8 @@ class OpenSRS(object):
                         })
         except httplib2.ServerNotFoundError:
             raise OpenSRSHTTPException("DNS is not working for us.")
+        except AttributeError:
+            raise OpenSRSHTTPException("Are we offline?")
 
         if resp.status == 200:
             # parse the XML response
