@@ -219,14 +219,17 @@ class OpenSRS(object):
         signature = hashlib.md5("%s%s" % (hashlib.md5("%s%s" % (data, self.private_key)).hexdigest(), self.private_key)).hexdigest()
 
         # send our post
-        resp, content = self.H.request(self.server, "POST", 
-                body=data,
-                headers={
-                    'Content-Type': 'text/xml',
-                    'X-Username': self.username,
-                    'X-Signature': signature,
-                    'Content-Length': str(len(data)),
-                    })
+        try:
+            resp, content = self.H.request(self.server, "POST",
+                    body=data,
+                    headers={
+                        'Content-Type': 'text/xml',
+                        'X-Username': self.username,
+                        'X-Signature': signature,
+                        'Content-Length': str(len(data)),
+                        })
+        except httplib2.ServerNotFoundError:
+            raise OpenSRSHTTPException("DNS is not working for us.")
 
         if resp.status == 200:
             # parse the XML response
