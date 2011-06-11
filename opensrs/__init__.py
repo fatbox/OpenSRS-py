@@ -307,7 +307,7 @@ class OpenSRS(object):
                     "owner": owner_contact,
                     "admin": owner_contact,
                     "billing": owner_contact,
-                }
+                },
                 "custom_nameservers": 0,
                 "custom_tech_contact": 0,
                 "domain": domain_name,
