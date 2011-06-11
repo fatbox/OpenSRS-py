@@ -286,3 +286,35 @@ class OpenSRS(object):
             "period": period,
             "reg_type": "new" if not renewal else "renewal",
             })
+
+    def domain_register(self, domain_name, owner_contact, period, reg_username, reg_password, extra_items, auto_renew=False):
+        """
+        Register a new domain, for the period specified to the owner specified.
+
+        Also sets the various contacts up as well.
+        The owner_contact will be used for the admin and billing contact.
+
+        The tech_contact will assumed to be the default associated with the OpenSRS account.
+
+        reg_username, reg_password these are the registrants username and password. I do not know why they are needed either.
+
+        'extra_items' is used for some zones which have additional requirements (e.g. '.au' domains)
+
+        """
+        return self.post("sw_register", "domain", {
+                "auto_renew": auto_renew,
+                "contact_set": {
+                    "owner": owner_contact,
+                    "admin": owner_contact,
+                    "billing": owner_contact,
+                }
+                "custom_nameservers": 0,
+                "custom_tech_contact": 0,
+                "domain": domain_name,
+                "f_lock_domain": 1,
+                "f_whois_privacy": 1,
+                "period": period,
+                "reg_username": username,
+                "reg_password": password,
+                "reg_type": "new",
+            }, extra_items )
