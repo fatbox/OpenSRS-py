@@ -314,7 +314,7 @@ class OpenSRS(object):
                 "f_lock_domain": 1,
                 "f_whois_privacy": 1,
                 "period": period,
-                "reg_username": username,
-                "reg_password": password,
+                "reg_username": reg_username,
+                "reg_password": reg_password,
                 "reg_type": "new",
             }, extra_items )
