@@ -1,6 +1,10 @@
 OpenSRS-py Changelog
 --------------------
 
+Version 0.1.2
+Released: Mon Jan 16 09:46:08 EST 2012
+ - Add MANIFEST.in to include README.md in the cheeseshop tarball [GH-1]
+
 Version 0.1.1
 Released: Tue Jan  3 11:35:54 EST 2012
  - Repackaged for the cheeseshop
