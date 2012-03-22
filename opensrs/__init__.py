@@ -85,7 +85,7 @@ class OpenSRS(object):
             key = 'test'
         self.server = OPENSRS_SERVERS[key]
 
-    def post(self, action, object, attrs, extra_items = {}):
+    def post(self, action, object, attrs, extra_items=None):
         """
         Post: send an action to the OpenSRS API
 
@@ -205,12 +205,20 @@ class OpenSRS(object):
         # add the body
         body = SubElement(env, 'body')
         data_block = SubElement(body, 'data_block')
-        data_to_dt_assoc(data_block, {
+
+        # build our parameters
+        params = {
             'protocol': 'XCP',
             'action': action,
             'object': object,
             'attributes': attrs,
-            })
+            }
+
+        # add the extra items if we've been provided any
+        if isinstance(extra_items, dict):
+            params.update(extra_items)
+
+        data_to_dt_assoc(data_block, params);
 
         data = "%s%s" % (OPENSRS_XML_HEADER, tostring(env))
 
