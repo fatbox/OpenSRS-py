@@ -1,6 +1,10 @@
 OpenSRS-py Changelog
 --------------------
 
+Version 0.1.3
+Released: Wed Mar 21 21:37:00 EDT 2012
+ - Ensure extra_items passed to post are actually used [GH-2]
+
 Version 0.1.2
 Released: Mon Jan 16 09:46:08 EST 2012
  - Add MANIFEST.in to include README.md in the cheeseshop tarball [GH-1]
