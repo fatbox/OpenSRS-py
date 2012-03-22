@@ -6,7 +6,7 @@ setup(
         name="OpenSRS",
         packages=['opensrs', ],
         install_requires=['httplib2', ],
-        version='0.1.2',
+        version='0.1.3',
         description='Higher level Python interface to the OpenSRS XML API',
         long_description=open('README.md').read(),
         author='Evan Borgstrom',
