@@ -1,5 +1,5 @@
 OpenSRS-py
-Version 0.1.3
+Version 0.1.4
 =============
 
 This is a python implementation of the [OpenSRS][opensrs] [XML API][xmlapi].
