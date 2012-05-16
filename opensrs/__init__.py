@@ -274,7 +274,6 @@ class OpenSRS(object):
         else:
             raise OpenSRSHTTPException("Status returned from POST was not 200")
 
-
     def name_suggest(self, query, tlds=[".COM", ".NET", ".ORG", ".INFO", ".BIZ", ".US", ".MOBI"]):
         """
         Shortcut for the name_suggest function
@@ -283,6 +282,14 @@ class OpenSRS(object):
             "searchstring": query,
             "max_wait_time": 3,
             "tlds": tlds,
+            })
+
+    def check_transfer(self, domain_name):
+        """
+        Shortcut to check transfer status of a domain.
+        """
+        return self.post("check_transfer", "domain", {
+            "domain": domain_name,
             })
 
     def balance(self):
