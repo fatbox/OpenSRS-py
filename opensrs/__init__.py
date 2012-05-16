@@ -63,7 +63,6 @@ class OpenSRS(object):
     Convenience functions exists for some functions, patches are welcome
     """
 
-    H = httplib2.Http()
     server = None
     username = None
     private_key = None
@@ -77,6 +76,17 @@ class OpenSRS(object):
         private_key - your OpenSRS private key
         test - set to False for production operation
         """
+
+        # if we are using httplib2 that is greater than 0.7
+        # then we need to use certifi to provide the correct
+        # list of ca certificates, otherwise we get an error
+        # when we connect
+        if httplib2.__version__ > '0.7':
+            import certifi
+            self.H = httplib2.Http(ca_certs=certifi.where())
+        else:
+            self.H = httplib2.Http()
+
         self.username = username
         self.private_key = private_key
 
@@ -264,7 +274,6 @@ class OpenSRS(object):
         else:
             raise OpenSRSHTTPException("Status returned from POST was not 200")
 
-
     def name_suggest(self, query, tlds=[".COM", ".NET", ".ORG", ".INFO", ".BIZ", ".US", ".MOBI"]):
         """
         Shortcut for the name_suggest function
@@ -273,6 +282,14 @@ class OpenSRS(object):
             "searchstring": query,
             "max_wait_time": 3,
             "tlds": tlds,
+            })
+
+    def check_transfer(self, domain_name):
+        """
+        Shortcut to check transfer status of a domain.
+        """
+        return self.post("check_transfer", "domain", {
+            "domain": domain_name,
             })
 
     def balance(self):

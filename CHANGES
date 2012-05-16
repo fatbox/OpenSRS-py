@@ -1,6 +1,11 @@
 OpenSRS-py Changelog
 --------------------
 
+Version 0.1.4
+Released: Tue May 15 23:10:07 EDT 2012
+ - Use certifi to provide ca_certs to httplib >= 0.7
+ - Added check_transfer shortcut from [shawnsi]
+
 Version 0.1.3
 Released: Wed Mar 21 21:37:00 EDT 2012
  - Ensure extra_items passed to post are actually used [GH-2]
