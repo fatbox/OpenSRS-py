@@ -63,7 +63,6 @@ class OpenSRS(object):
     Convenience functions exists for some functions, patches are welcome
     """
 
-    H = httplib2.Http()
     server = None
     username = None
     private_key = None
@@ -77,6 +76,17 @@ class OpenSRS(object):
         private_key - your OpenSRS private key
         test - set to False for production operation
         """
+
+        # if we are using httplib2 that is greater than 0.7
+        # then we need to use certifi to provide the correct
+        # list of ca certificates, otherwise we get an error
+        # when we connect
+        if httplib2.__version__ > '0.7':
+            import certifi
+            self.H = httplib2.Http(ca_certs=certifi.where())
+        else:
+            self.H = httplib2.Http()
+
         self.username = username
         self.private_key = private_key
 
